@@ -8,7 +8,7 @@ const game_container = document.querySelector('#game-container')
 
 
 let score = 0;
-let timeLeft = 20;
+let timeLeft = 10;
 let isGameStarted = false;
 let ratInterval = null;
 let timerInterval = null;
@@ -40,15 +40,13 @@ const audio = new Audio(music)
 function startGame() {
     isGameStarted = true;
     score = 0;
-    timeLeft = 20;
+    timeLeft = 10;
     startScreen.style.display = "none";
     scoreEl.style.display = "block";
     timeEl.style.display = "block";
 
-    addRats()
-    audio.play()
-    displayBestScore();
-
+    addRats();
+    audio.play();
     ratInterval = setInterval(addRats, 1500);
     timerInterval = setInterval(updateTimer, 1000);
 }
@@ -60,7 +58,7 @@ function playAgain() {
     
     isGameStarted = false;
     score = 0;
-    timeLeft = 5;
+    timeLeft = 10;
     clearInterval(ratInterval);
     clearInterval(timerInterval);
 
@@ -190,12 +188,10 @@ displayBestScore();
 
 
 function endGame() {
-
     clearInterval(timerInterval);
     clearInterval(ratInterval);
-    alert("Time's up!")
-    playAgain()
-    window.location.reload();
-    saveScoreToLocalStorage(score);
-
+    alert("Time's up!");
+    saveScoreToLocalStorage(score); // Best skoru güncelle
+    playAgain();
+    window.location.reload(); // Sayfayı yenile
 }
